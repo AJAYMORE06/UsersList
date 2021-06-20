@@ -85,6 +85,24 @@ export class UserServiceService {
       );
   }
 
+  //for create
+  create(user): Observable<any> {
+    return this.http
+      .post("https://reqres.in/api/users",user, {
+        observe: "response",
+      })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      )
+      .pipe(
+        catchError((err) => {
+          return this.handleApiError(err);
+        })
+      );
+  }
+
   //Error handle
   handleApiError(error: any) {
     if (error.status == 401) {

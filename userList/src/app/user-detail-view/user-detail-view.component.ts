@@ -20,16 +20,18 @@ export class UserDetailViewComponent implements OnInit {
   showError: boolean = false;
   updateForm: boolean = false;
   status: string = '';
+  updatedAt: any;
+  showHeadSuccess: boolean = false;
   constructor(public dialogRef: MatDialogRef<UserViewComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder, private userServiceService: UserServiceService) { }
 
   ngOnInit(): void {
-    console.log(this.data)
     this.userName = this.data.data.first_name + " " + this.data.data.last_name;
     this.detailForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
+      updatedAt: ['']
     });
     this.displayUserDetails();
   }
@@ -37,7 +39,7 @@ export class UserDetailViewComponent implements OnInit {
   get fval() {
     return this.detailForm.controls;
   }
-  
+
   displayUserDetails() {
     this.firstName = this.data.data.first_name;
     this.lastName = this.data.data.last_name;
@@ -47,7 +49,6 @@ export class UserDetailViewComponent implements OnInit {
 
   deleteData() {
     this.userServiceService.deleteData(this.data.data.id).subscribe(res => {
-      console.log(res)
       this.status = "deleted";
       this.showError = true;
     })
@@ -69,14 +70,16 @@ export class UserDetailViewComponent implements OnInit {
     userData.last_name = this.lastName;
     userData.email = this.email;
     this.userServiceService.updateData(userData, this.data.data.id).subscribe(res => {
-      console.log(res)
-      this.status = "updated";
       this.updateForm = false;
-      this.showError = true;
+      this.showHeadSuccess = true;
+      this.firstName = res.body.first_name;
+      this.lastName = res.body.last_name;
+      this.email = res.body.email;
+      this.updatedAt = res.body.updatedAt;
     })
   }
 
-  close(){
+  close() {
     this.dialogRef.close();
   }
 

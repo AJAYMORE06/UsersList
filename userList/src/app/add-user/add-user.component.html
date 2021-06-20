@@ -1,1 +1,82 @@
-<p>add-user works!</p>
+<div *ngIf="!afterCreate">
+    <div class="headSec">
+        <div class="container">
+            <h2>Create User</h2>
+        </div>
+    </div>
+    <div class="container bodyStyle">
+        <form [formGroup]="createForm">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="firstName" id="firstName" [(ngModel)]="firstName" formControlName="firstName" class="form-control" placeholder="First Name" [ngClass]="{ 'is-invalid': submitted && fval.firstName.errors }" />
+                <div *ngIf="submitted && fval.firstName.errors" class="invalid-feedback">
+                    <div *ngIf="fval.firstName.errors.required">First Name is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="lastName" id="lastName" [(ngModel)]="lastName" formControlName="lastName" class="form-control" placeholder="Last Name" [ngClass]="{ 'is-invalid': submitted && fval.lastName.errors }" />
+                <div *ngIf="submitted && fval.lastName.errors" class="invalid-feedback">
+                    <div *ngIf="fval.lastName.errors.required">Last Name is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Id</label>
+                <input type="email" id="email" formControlName="email" [(ngModel)]="email" class="form-control" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }" />
+                <div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
+                    <div *ngIf="fval.email.errors.required">Email Id is required</div>
+                    <div *ngIf="fval.email.errors.email">Enter a valid email address</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" (click)="createUser()">Create User</button>
+                <button style="margin-left:25px" type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="afterCreate">
+    <div class="headSec">
+        <div class="container">
+            <h2 class="text-danger">User {{firstName}} {{lastName}} is being successfully created</h2>
+        </div>
+    </div>
+    <div class="container bodyStyle">
+        <form [formGroup]="createForm">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="firstName" id="firstName" [(ngModel)]="firstName" formControlName="firstName" readonly="readonly" class="form-control" placeholder="First Name" [ngClass]="{ 'is-invalid': submitted && fval.firstName.errors }" />
+                <div *ngIf="submitted && fval.firstName.errors" class="invalid-feedback">
+                    <div *ngIf="fval.firstName.errors.required">First Name is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="lastName" id="lastName" [(ngModel)]="lastName" formControlName="lastName" readonly="readonly" class="form-control" placeholder="Last Name" [ngClass]="{ 'is-invalid': submitted && fval.lastName.errors }" />
+                <div *ngIf="submitted && fval.lastName.errors" class="invalid-feedback">
+                    <div *ngIf="fval.lastName.errors.required">Last Name is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Id</label>
+                <input type="email" id="email" formControlName="email" [(ngModel)]="email" class="form-control" readonly="readonly" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }" />
+                <div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
+                    <div *ngIf="fval.email.errors.required">Email Id is required</div>
+                    <div *ngIf="fval.email.errors.email">Enter a valid email address</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="id">Id</label>
+                <input type="id" id="id" formControlName="id" [(ngModel)]="id" class="form-control" readonly="readonly" placeholder="Id" />
+            </div>
+            <div class="form-group">
+                <label for="createdOn">Created On</label>
+                <input type="createdOn" id="createdOn" formControlName="createdOn" [(ngModel)]="createdOn" class="form-control" readonly="readonly" placeholder="Created On" />
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-secondary" (click)="cancel()">Close</button>
+            </div>
+        </form>
+    </div>
+</div>

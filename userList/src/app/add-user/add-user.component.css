@@ -1,0 +1,8 @@
+.headSec {
+    background-color: rgba(0, 0, 0, .03) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, .125) !important;
+}
+
+.bodyStyle {
+    margin-top: 10px;
+}

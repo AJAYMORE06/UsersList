@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserServiceService } from '../Services/user-service.service';
 import { UserDetailViewComponent } from '../user-detail-view/user-detail-view.component';
 import {MatDialog } from '@angular/material/dialog';
+import { AddUserComponent } from '../add-user/add-user.component';
 @Component({
   selector: 'app-user-view',
   templateUrl: './user-view.component.html',
@@ -20,16 +21,20 @@ export class UserViewComponent implements OnInit {
   getUsers(pageNo) {
     this.userService.getUser(pageNo).subscribe(item => {
       this.users = item.body.data;
-      console.log(this.users)
     })
   }
 
   addUser() {
-    
+    this.dialogRef = this.dialog.open(AddUserComponent,{
+      width:'600px',
+      height:'400px',
+      hasBackdrop:true,
+    })
+    this.dialogRef.afterClosed().subscribe(result=>{
+    })
   }
 
   viewDetails(user) {
-    console.log(user)
     this.dialogRef = this.dialog.open(UserDetailViewComponent,{
       width:'600px',
       height:'400px',
@@ -39,7 +44,6 @@ export class UserViewComponent implements OnInit {
       }
     })
     this.dialogRef.afterClosed().subscribe(result=>{
-      console.log(result)
     })
   }
 
