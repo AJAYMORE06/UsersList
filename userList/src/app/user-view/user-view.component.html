@@ -1,5 +1,18 @@
-<div class="container">
-    <div class="container-head">
-        <h2 class="alignhead">User List</h2>
+<div>
+    <div class="headSec">
+        <div class="container">
+            <h2 class="alignhead">Users List</h2>
+            <button class="btn btn-secondary customAddbtn" type="button" (click)="addUser()"><i class="bi bi-plus"></i>Add User</button>
+        </div>
+    </div>
+    <div class="container bodyStyle">
+        <div class="userListAlign" *ngFor="let user of users" (click)="viewDetails(user)">
+            <p class="nameStyle">{{user.first_name}} {{user.last_name}}</p>
+            <p class="emailStyle">{{user.email}}</p>
+            <img class="userAvatar" src={{user.avatar}} alt={{user.first_name}}>
+        </div>
+    </div>
+    <div class="container footerSec">
+
     </div>
 </div>

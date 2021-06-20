@@ -1,6 +1,48 @@
 .alignhead {
-    text-align: center;
-    vertical-align: middle;
-    padding-top: 4px;
+    padding-left: 97px;
+    padding-top: 15px;
     font-size: 32px;
+}
+
+.headSec {
+    background-color: rgba(0, 0, 0, .03) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, .125) !important;
+}
+
+.customAddbtn {
+    margin-left: 74vw;
+    margin-top: -54px;
+}
+
+.bodyStyle {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.bodyStyle :hover {
+    transform: scale(1.03);
+    cursor: pointer;
+}
+
+.nameStyle {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.emailStyle {
+    text-align: center;
+    font-size: 14px;
+}
+
+.userListAlign {
+    margin-left: 98px;
+    margin-top: 70px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.userAvatar {
+    padding-left: 10px;
 }

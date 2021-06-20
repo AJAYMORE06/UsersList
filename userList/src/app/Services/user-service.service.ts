@@ -14,9 +14,9 @@ export class UserServiceService {
   router: Router;
 
   //get the user list
-  getUser(): Observable<any> {
+  getUser(pageNo): Observable<any> {
     return this.http
-      .get("https://reqres.in/api/users?page=2", {
+      .get("https://reqres.in/api/users?page=" + pageNo, {
         observe: "response",
       })
       .pipe(
@@ -34,7 +34,43 @@ export class UserServiceService {
   //for login
   login(user): Observable<any> {
     return this.http
-      .post("https://reqres.in/api/login",user,{
+      .post("https://reqres.in/api/login", user, {
+        observe: "response",
+      })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      )
+      .pipe(
+        catchError((err) => {
+          return this.handleApiError(err);
+        })
+      );
+  }
+
+  //for update
+  updateData(user, id): Observable<any> {
+    return this.http
+      .put("https://reqres.in/api/users/" + id, user, {
+        observe: "response",
+      })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      )
+      .pipe(
+        catchError((err) => {
+          return this.handleApiError(err);
+        })
+      );
+  }
+
+  //for delete
+  deleteData(id): Observable<any> {
+    return this.http
+      .delete("https://reqres.in/api/users/" + id, {
         observe: "response",
       })
       .pipe(

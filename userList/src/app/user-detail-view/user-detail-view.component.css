@@ -1,0 +1,21 @@
+.headSec {
+    background-color: rgba(0, 0, 0, .03) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, .125) !important;
+}
+
+.alignTop {
+    padding-top: 30px;
+}
+
+.alignForm {
+    padding-top: 30px;
+    width: 300px;
+}
+
+.deleteNote {
+    padding-top: 150px;
+    padding-left: 130px;
+    color: red;
+    font-size: 14px;
+    font-weight: 500;
+}

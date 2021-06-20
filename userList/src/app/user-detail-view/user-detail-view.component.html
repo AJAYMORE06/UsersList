@@ -1,1 +1,80 @@
-<p>user-detail-view works!</p>
+<div *ngIf="!showError">
+    <div class="headSec">
+        <div class="container">
+            <h2>{{userName}}'s Details</h2>
+            <button style="margin-top: -40px; font-size: 32px;" type="button" class="close" aria-label="Close" (click)="close()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+    </div>
+    <div class="container bodyStyle">
+        <div class="col-md-2 alignTop">
+            <img src={{avatar}} alt="firstName">
+        </div>
+        <div *ngIf="!updateForm" class="col-md-10 offset-md-2 alignForm">
+            <form [formGroup]="detailForm">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="firstName" id="firstName" [(ngModel)]="firstName" formControlName="firstName" class="form-control" placeholder="First Name" readonly="readonly" [ngClass]="{ 'is-invalid': submitted && fval.firstName.errors }" />
+                    <div *ngIf="submitted && fval.firstName.errors" class="invalid-feedback">
+                        <div *ngIf="fval.firstName.errors.required">First Name is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="lastName" id="lastName" [(ngModel)]="lastName" formControlName="lastName" class="form-control" placeholder="Last Name" readonly="readonly" [ngClass]="{ 'is-invalid': submitted && fval.lastName.errors }" />
+                    <div *ngIf="submitted && fval.lastName.errors" class="invalid-feedback">
+                        <div *ngIf="fval.lastName.errors.required">Last Name is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Id</label>
+                    <input type="email" id="email" formControlName="email" [(ngModel)]="email" class="form-control" placeholder="Email" readonly="readonly" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }" />
+                    <div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
+                        <div *ngIf="fval.email.errors.required">Email Id is required</div>
+                        <div *ngIf="fval.email.errors.email">Enter a valid email address</div>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-left: 140px;">
+                    <button type="button" class="btn btn-primary" (click)="enableUpdateData()">Edit Data</button>
+                    <button style="margin-left:25px" type="button" class="btn btn-secondary" (click)="deleteData()">Delete</button>
+                </div>
+            </form>
+        </div>
+
+        <div *ngIf="updateForm" class="col-md-10 offset-md-2 alignForm">
+            <form [formGroup]="detailForm">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="firstName" id="firstName" [(ngModel)]="firstName" formControlName="firstName" class="form-control" placeholder="First Name" [ngClass]="{ 'is-invalid': submitted && fval.firstName.errors }" />
+                    <div *ngIf="submitted && fval.firstName.errors" class="invalid-feedback">
+                        <div *ngIf="fval.firstName.errors.required">First Name is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="lastName" id="lastName" [(ngModel)]="lastName" formControlName="lastName" class="form-control" placeholder="Last Name" [ngClass]="{ 'is-invalid': submitted && fval.lastName.errors }" />
+                    <div *ngIf="submitted && fval.lastName.errors" class="invalid-feedback">
+                        <div *ngIf="fval.lastName.errors.required">Last Name is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Id</label>
+                    <input type="email" id="email" formControlName="email" [(ngModel)]="email" class="form-control" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }" />
+                    <div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
+                        <div *ngIf="fval.email.errors.required">Email Id is required</div>
+                        <div *ngIf="fval.email.errors.email">Enter a valid email address</div>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-left: 150px;">
+                    <button type="button" class="btn btn-primary" (click)="updateData()">Update</button>
+                    <button style="margin-left:25px" type="button" class="btn btn-secondary" (click)="deleteData()">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<button *ngIf="showError" style="font-size: 32px;" type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+<p class="deleteNote" *ngIf="showError">User data has been {{status}} successfully</p>
