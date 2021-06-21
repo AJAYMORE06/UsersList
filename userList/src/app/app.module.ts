@@ -12,6 +12,7 @@ import { UserServiceService } from '../app/Services/user-service.service';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     CommonModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule 
   ],
   providers: [UserServiceService],
   bootstrap: [AppComponent]

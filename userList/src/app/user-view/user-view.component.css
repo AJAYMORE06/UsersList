@@ -11,7 +11,7 @@
 
 .customAddbtn {
     margin-left: 74vw;
-    margin-top: -54px;
+    margin-top: -78px;
 }
 
 .bodyStyle {
@@ -45,4 +45,8 @@
 
 .userAvatar {
     padding-left: 10px;
+}
+
+.footerSec {
+    float: right;
 }

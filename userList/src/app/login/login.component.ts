@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../Services/auth.service';
 import { User } from '../Services/user';
 import { UserServiceService } from '../Services/user-service.service';
 
@@ -16,14 +17,14 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserServiceService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      rememberme: ['']
     });
 
   }
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(formValue) {
-    console.log(formValue)
+    console.log(formValue.rememberme)
     this.submitted = true;
     if (this.registerForm.invalid) {
       return;
@@ -44,7 +45,8 @@ export class LoginComponent implements OnInit {
     userDetail.email = formValue.email;
     userDetail.password = formValue.password;
     this.userService.login(userDetail).subscribe(response => {
-      console.log(response.body)
+      console.log(response.body.token)
+      this.authService.login(response.body)
       this.router.navigate(['/users'])
     }, err => {
       if (err.status = 400) {
