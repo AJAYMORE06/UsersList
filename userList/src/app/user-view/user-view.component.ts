@@ -3,6 +3,7 @@ import { UserServiceService } from '../Services/user-service.service';
 import { UserDetailViewComponent } from '../user-detail-view/user-detail-view.component';
 import {MatDialog } from '@angular/material/dialog';
 import { AddUserComponent } from '../add-user/add-user.component';
+import { AuthService } from '../Services/auth.service';
 @Component({
   selector: 'app-user-view',
   templateUrl: './user-view.component.html',
@@ -12,7 +13,9 @@ export class UserViewComponent implements OnInit {
   users: any = [];
   pageno: number = 1;
   dialogRef: any;
-  constructor(private userService: UserServiceService, public dialog: MatDialog) { }
+  constructor(private userService: UserServiceService, public dialog: MatDialog,
+    private authService: AuthService,
+    ) { }
 
   ngOnInit(): void {
     this.getUsers(this.pageno);
@@ -45,6 +48,11 @@ export class UserViewComponent implements OnInit {
     })
     this.dialogRef.afterClosed().subscribe(result=>{
     })
+  }
+
+  logout(){
+    this.authService.logout();
+    window.location.href="/login"
   }
 
 }

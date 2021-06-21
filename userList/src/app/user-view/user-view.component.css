@@ -10,8 +10,13 @@
 }
 
 .customAddbtn {
-    margin-left: 74vw;
+    margin-left: 68vw;
     margin-top: -78px;
+}
+
+.customAddbtnLogout {
+    margin-left: 74vw;
+    margin-top: -118px;
 }
 
 .bodyStyle {
