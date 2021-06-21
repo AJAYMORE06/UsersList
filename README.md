@@ -8,4 +8,4 @@ Password: cityslicka
 4. If anyone user from the list is being clicked then the detail view of that user will be displayed in new view.
 5. The logged in user can perform Update and delete operations onthe detailed view user.
 6. The logged in user can also create new user entry, after clicking on Add user button in navbar a new view will open i.e Add User. After successful creation of user the data of that user will be shown along with created at time.
-7.After successful logout the token related to the user is also removed, so that the user cannot access any page without login.
+7. After successful logout the token related to the user is also removed, so that the user cannot access any page without login.
