@@ -36,7 +36,7 @@ export class AddUserComponent implements OnInit {
   }
 
   cancel() {
-    this.dialogRef.close();
+    this.dialogRef.close(this.createForm.value);
   }
 
   createUser() {

@@ -22,6 +22,7 @@ export class UserDetailViewComponent implements OnInit {
   status: string = '';
   updatedAt: any;
   showHeadSuccess: boolean = false;
+  updatedObj: any = { 'id': '', 'firstName': '', 'lastName': '', 'emailId': '','status':'' };
   constructor(public dialogRef: MatDialogRef<UserViewComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder, private userServiceService: UserServiceService) { }
 
@@ -80,7 +81,20 @@ export class UserDetailViewComponent implements OnInit {
   }
 
   close() {
-    this.dialogRef.close();
+    if (this.showHeadSuccess == true) {
+      this.updatedObj.id = this.data.data.id;
+      this.updatedObj.firstName = this.firstName;
+      this.updatedObj.lastName = this.lastName;
+      this.updatedObj.emailId = this.email;
+      this.updatedObj.status="Update";
+    }
+    if (this.showError == true) {
+      this.updatedObj.id=this.data.data.id;
+      this.updatedObj.firstName = this.data.data.first_name;
+      this.updatedObj.lastName = this.data.data.last_name;
+      this.updatedObj.status="Delete";
+    }
+    this.dialogRef.close(this.updatedObj);
   }
 
 }

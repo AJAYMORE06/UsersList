@@ -1,28 +1,30 @@
-<div class="card cardStyle">
-    <h2 class="card-header">Login</h2>
-    <div class="card-body">
-        <form [formGroup]="registerForm" id="registerFormReset" (ngSubmit)="login(registerForm.value);">
-            <div class="form-group">
-                <input type="email" formControlName="email" class="form-control" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }" />
-                <div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
-                    <div *ngIf="fval.email.errors.required">Email is required</div>
-                    <div *ngIf="fval.email.errors.email">Enter a valid email address</div>
+<div class="container">
+    <div class="card cardStyle">
+        <h2 class="card-header">Login</h2>
+        <div class="card-body">
+            <form [formGroup]="registerForm" id="registerFormReset" (ngSubmit)="login(registerForm.value);">
+                <div class="form-group">
+                    <input type="email" formControlName="email" class="form-control" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }" />
+                    <div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
+                        <div *ngIf="fval.email.errors.required">Email is required</div>
+                        <div *ngIf="fval.email.errors.email">Enter a valid email address</div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <input type="password" formControlName="password" class="form-control" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && fval.password.errors }" />
-                <div *ngIf="submitted && fval.password.errors" class="invalid-feedback">
-                    <div *ngIf="fval.password.errors.required">Password is required</div>
-                    <div *ngIf="fval.password.errors.minlength">Password must be at least 6 characters</div>
+                <div class="form-group">
+                    <input type="password" formControlName="password" class="form-control" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && fval.password.errors }" />
+                    <div *ngIf="submitted && fval.password.errors" class="invalid-feedback">
+                        <div *ngIf="fval.password.errors.required">Password is required</div>
+                        <div *ngIf="fval.password.errors.minlength">Password must be at least 6 characters</div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="form-control btn btn-primary">Login</button>
-            </div>
-            <div *ngIf="showError" style="display: flex;">
-                <p style="font-size:12px;" class="text-danger">User Not Found</p>
-                <button type="reset" class="btn btn-secondary resetbtn" (click)="reset()">Reset</button>
-            </div>
-        </form>
+                <div class="form-group">
+                    <button type="submit" class="form-control btn btn-primary">Login</button>
+                </div>
+                <div *ngIf="showError" style="display: flex;">
+                    <p style="font-size:12px;" class="text-danger">User Not Found</p>
+                    <button type="reset" class="btn btn-secondary resetbtn" (click)="reset()">Reset</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
